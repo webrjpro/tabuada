@@ -542,6 +542,11 @@
                     <p>Desenvolvido com carinho para o aprendizado saudável das crianças. Ao completar a aventura, você receberá o Certificado de Mestre Supremo da Tabuada!</p>
                 </div>
 
+                <div class="settings-group certificate-settings-group" id="settings-certificate-group" hidden>
+                    <label>Certificado Final:</label>
+                    <button id="btn-settings-certificate" class="btn btn-info" type="button">📜 Abrir Certificado</button>
+                </div>
+
                 <div class="settings-group developer-credit">
                     <label>Desenvolvedor:</label>
                     <p>Carlos Antonio de Oliveira Piquet<br><span>carlospiquet.projetos@gmail.com</span></p>
@@ -559,10 +564,17 @@
                 <div class="cert-border">
                     <div class="cert-inner-border">
                         <div class="cert-header">
-                            <span class="cert-emblem">🏆</span>
-                            <h2>Reino dos Números</h2>
+                            <div class="cert-game-ribbon">Tabuada Quest</div>
+                            <div class="cert-photo-frame" id="cert-photo-frame">
+                                <span class="cert-emblem">🏆</span>
+                            </div>
+                            <h2>O Reino dos Números</h2>
                             <p class="cert-subtitle">Ministério da Aventura Matemática</p>
+                            <div class="cert-kingdom-icons" aria-hidden="true">
+                                <span>🌲</span><span>💎</span><span>🏰</span><span>🏴‍☠️</span><span>🌋</span><span>⚡</span><span>🌀</span><span>👑</span>
+                            </div>
                         </div>
+                        <img class="cert-king-stamp" src="carimbo/carimbo-selo.png" alt="Carimbo oficial do Reino dos Números">
                         
                         <div class="cert-body">
                             <h1>CERTIFICADO</h1>
@@ -576,13 +588,14 @@
                         </div>
 
                         <div class="cert-footer">
-                            <div class="cert-sign">
+                            <div class="cert-sign cert-sign-king">
+                                <div class="cert-handwritten-sign">Rei dos Números</div>
                                 <div class="sign-line"></div>
-                                <p>Guardião da Aritmética</p>
+                                <p>Assinado pelo Rei</p>
                             </div>
                             <div class="cert-sign">
                                 <div class="sign-line"></div>
-                                <p>Rei dos Números</p>
+                                <p>Assinatura da Criança</p>
                             </div>
                         </div>
                     </div>

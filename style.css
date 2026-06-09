@@ -1190,6 +1190,8 @@ body {
 .map-footer {
     display: flex;
     justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
     margin-top: 15px;
 }
 
@@ -2383,46 +2385,100 @@ body {
    TELA CERTIFICADO FINAL
    ========================================================================== */
 #screen-certificate {
-    justify-content: space-between;
+    justify-content: center;
     overflow-y: auto;
+    gap: 14px;
 }
 
 .certificate-container {
-    background: #fff;
+    background: linear-gradient(135deg, #38bdf8 0%, #f59e0b 48%, #a78bfa 100%);
     color: #1a202c;
-    padding: 25px;
+    padding: 14px;
     border-radius: var(--border-radius-lg);
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    width: 680px;
+    width: min(930px, 100%);
     margin: 0 auto;
     position: relative;
 }
 
 .cert-border {
-    border: 8px double hsl(45, 100%, 40%);
+    border: 8px double #ffffff;
     padding: 10px;
     border-radius: var(--border-radius-md);
+    background: #fffdf0;
 }
 
 .cert-inner-border {
-    border: 2px solid hsl(45, 100%, 30%);
-    padding: 25px 20px;
+    border: 3px solid hsl(45, 100%, 30%);
+    min-height: 500px;
+    padding: 20px 34px;
     border-radius: var(--border-radius-sm);
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: radial-gradient(circle, #fffdf5 0%, #fff 100%);
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 12% 16%, rgba(56, 189, 248, 0.18), transparent 18%),
+        radial-gradient(circle at 88% 18%, rgba(167, 139, 250, 0.16), transparent 18%),
+        radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.16), transparent 24%),
+        linear-gradient(180deg, #fffdf4 0%, #f8fbff 52%, #fff8e7 100%);
 }
 
 .cert-header {
-    margin-bottom: 25px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.cert-game-ribbon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 190px;
+    padding: 6px 20px;
+    margin-bottom: 8px;
+    border: 2px solid #7c3aed;
+    border-radius: 999px;
+    background: #fef3c7;
+    color: #6d28d9;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    box-shadow: 0 4px 0 rgba(124, 58, 237, 0.12);
+}
+
+.cert-photo-frame {
+    width: 78px;
+    height: 78px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid hsl(45, 100%, 42%);
+    border-radius: 999px;
+    background: #fff8dc;
+    box-shadow: 0 8px 16px rgba(146, 64, 14, 0.12);
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.cert-photo-frame.has-photo {
+    background: #ffffff;
+}
+
+.cert-photo-frame img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
 }
 
 .cert-emblem {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
     display: block;
-    margin-bottom: 8px;
     animation: pulseGlow 3s ease-in-out infinite alternate;
 }
 
@@ -2447,14 +2503,28 @@ body {
     text-transform: uppercase;
 }
 
+.cert-kingdom-icons {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 8px;
+    font-size: 1.1rem;
+}
+
 .cert-body h1 {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-weight: 900;
     color: hsl(45, 100%, 25%);
     letter-spacing: 0;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     line-height: 1;
+    text-shadow: 0 2px 0 rgba(245, 158, 11, 0.14);
+}
+
+.cert-body {
+    position: relative;
+    z-index: 1;
 }
 
 .cert-intro {
@@ -2479,7 +2549,7 @@ body {
     font-size: 0.95rem;
     color: #4a5568;
     line-height: 1.6;
-    max-width: 480px;
+    max-width: 720px;
     margin: 0 auto 15px auto;
     font-weight: bold;
 }
@@ -2491,7 +2561,7 @@ body {
 }
 
 .cert-granted-badge {
-    background: linear-gradient(135deg, hsl(45, 100%, 45%) 0%, hsl(40, 100%, 30%) 100%);
+    background: linear-gradient(135deg, #f59e0b 0%, #7c3aed 100%);
     color: white;
     font-family: var(--font-heading);
     font-weight: 900;
@@ -2505,13 +2575,51 @@ body {
 
 .cert-footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 90px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
 }
 
 .cert-sign {
-    width: 150px;
+    width: 240px;
+    min-height: 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.cert-sign-king {
+    position: relative;
+    width: 240px;
+}
+
+.cert-handwritten-sign {
+    color: #5d3d00;
+    font-family: "Segoe Script", "Brush Script MT", cursive;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 3px;
+    transform: rotate(-3deg);
+    white-space: nowrap;
+}
+
+.cert-king-stamp {
+    position: absolute;
+    top: 54px;
+    right: 42px;
+    width: 144px;
+    height: 144px;
+    border: 3px solid #fef3c7;
+    border-radius: 999px;
+    object-fit: cover;
+    object-position: center;
+    transform: rotate(7deg);
+    box-shadow: 0 8px 16px rgba(92, 35, 12, 0.18);
+    z-index: 1;
 }
 
 .sign-line {
@@ -3120,12 +3228,31 @@ body {
         padding: 5px 10px;
     }
 
+    .cert-photo-frame {
+        width: 66px;
+        height: 66px;
+    }
+
     .cert-granted-badge {
         font-size: 1rem;
         padding: 10px 18px;
     }
 
+    .cert-sign-king {
+        width: 260px;
+    }
+
+    .cert-king-stamp {
+        top: 18px;
+        right: 18px;
+        width: 88px;
+        height: 88px;
+        transform: rotate(7deg);
+    }
+
     .cert-footer {
+        flex-direction: column;
+        align-items: center;
         gap: 14px;
     }
 }
@@ -3173,6 +3300,18 @@ body {
    PRINT MEDIA RULES (FOR EXPORTING PDF CERTIFICATE)
    ========================================================================== */
 @media print {
+    @page {
+        size: A4 landscape;
+        margin: 8mm;
+    }
+
+    html,
+    body {
+        width: 100%;
+        min-height: 100%;
+        background: #ffffff !important;
+    }
+
     body * {
         visibility: hidden;
     }
@@ -3191,6 +3330,11 @@ body {
         max-height: 100%;
         background: transparent !important;
     }
+    #game-container::before {
+        content: none !important;
+        display: none !important;
+        background: none !important;
+    }
     #screen-certificate {
         position: absolute;
         left: 0;
@@ -3205,10 +3349,136 @@ body {
         background: transparent !important;
     }
     .certificate-container {
+        width: 275mm;
+        max-width: 100%;
+        height: 188mm;
+        min-height: 188mm;
+        background: linear-gradient(135deg, #38bdf8 0%, #f59e0b 48%, #a78bfa 100%) !important;
         box-shadow: none;
         border: none;
-        padding: 0;
-        transform: scale(1.1);
+        padding: 2.5mm;
+        margin: 0 auto;
+        transform: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    .cert-border {
+        height: 100%;
+        min-height: 0;
+        background: #fffdf0 !important;
+        border-color: #ffffff !important;
+        border-radius: 10px;
+        padding: 5mm;
+    }
+    .cert-inner-border {
+        height: 100%;
+        min-height: 0;
+        background:
+            radial-gradient(circle at 12% 16%, rgba(56, 189, 248, 0.18), transparent 18%),
+            radial-gradient(circle at 88% 18%, rgba(167, 139, 250, 0.16), transparent 18%),
+            radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.16), transparent 24%),
+            linear-gradient(180deg, #fffdf4 0%, #f8fbff 52%, #fff8e7 100%) !important;
+        border-color: #7a5300 !important;
+        border-radius: 6px;
+        padding: 5mm 10mm;
+        justify-content: space-between;
+    }
+    .cert-header,
+    .cert-footer {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .cert-body {
+        width: 100%;
+    }
+    .cert-photo-frame {
+        width: 22mm;
+        height: 22mm;
+        margin-bottom: 2mm;
+        box-shadow: none;
+    }
+    .cert-game-ribbon {
+        margin-bottom: 2mm;
+        padding: 4px 16px;
+        background: #fef3c7 !important;
+        border-color: #7c3aed !important;
+        color: #6d28d9 !important;
+        box-shadow: none;
+    }
+    .cert-kingdom-icons {
+        margin-top: 2mm;
+    }
+    .cert-emblem {
+        animation: none !important;
+        filter: none !important;
+    }
+    .cert-header h2 {
+        font-size: 1.2rem;
+    }
+    .cert-body h1 {
+        font-size: 2.8rem;
+        margin-bottom: 6px;
+    }
+    .cert-player-name {
+        font-size: 2rem;
+        margin: 8px 0;
+    }
+    .cert-declaration {
+        max-width: 205mm;
+        margin-bottom: 8px;
+    }
+    .cert-granted-badge {
+        font-size: 1.25rem;
+        padding: 8px 28px;
+    }
+    .cert-footer {
+        gap: 32mm;
+        margin-top: 0;
+    }
+    .cert-sign {
+        width: 62mm;
+    }
+    .cert-sign-king {
+        width: 62mm;
+    }
+    .cert-handwritten-sign {
+        color: #5d3d00 !important;
+        font-size: 1.25rem;
+        margin-bottom: 2px;
+    }
+    .cert-king-stamp {
+        width: 36mm;
+        height: 36mm;
+        top: 13mm;
+        right: 11mm;
+        box-shadow: none;
+        border-color: #fef3c7 !important;
+    }
+    .cert-header h2,
+    .cert-body h1 {
+        color: #5d3d00 !important;
+    }
+    .cert-subtitle,
+    .cert-intro,
+    .cert-declaration,
+    .cert-title-granted,
+    .cert-sign p {
+        color: #233044 !important;
+    }
+    .cert-player-name {
+        color: #3b176f !important;
+        border-bottom-color: #8a5f00 !important;
+    }
+    .cert-granted-badge {
+        background: linear-gradient(135deg, #f59e0b 0%, #7c3aed 100%) !important;
+        color: #ffffff !important;
+        border: 2px solid #8a5f00;
+        box-shadow: none;
+    }
+    .sign-line {
+        border-top-color: #233044 !important;
     }
     .certificate-actions {
         display: none !important;

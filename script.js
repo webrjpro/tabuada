@@ -5,6 +5,8 @@
    ========================================================================== */
 
 // 1. GAME CONSTANTS & DATABASE
+const CERTIFICATE_ACCESS_PASSWORD = "415263";
+
 const KINGDOMS = {
     2: {
         name: "Reino do Dobro",
@@ -801,6 +803,43 @@ function updateChildPhotoPreview() {
     }
 }
 
+function renderCertificateScreen() {
+    const displayName = (State.data.playerName || "Aventureiro").toUpperCase();
+    const nameElement = document.getElementById("cert-display-name");
+    const photoFrame = document.getElementById("cert-photo-frame");
+
+    if (nameElement) {
+        nameElement.innerText = displayName;
+    }
+
+    if (!photoFrame) return;
+
+    photoFrame.classList.remove("has-photo");
+
+    if (State.data.childPhoto) {
+        photoFrame.innerHTML = `<img src="${State.data.childPhoto}" alt="Foto da criança">`;
+        photoFrame.classList.add("has-photo");
+    } else {
+        photoFrame.innerHTML = `<span class="cert-emblem">🏆</span>`;
+    }
+}
+
+function requestCertificateAccess(actionText = "abrir o certificado") {
+    const password = prompt(`Área do desenvolvedor: digite a senha para ${actionText}.`);
+
+    if (password === null) {
+        return false;
+    }
+
+    if (password.trim() === CERTIFICATE_ACCESS_PASSWORD) {
+        return true;
+    }
+
+    AudioPlayer.playError();
+    showQuestToast("Senha incorreta.");
+    return false;
+}
+
 function resizePhotoForStorage(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -999,6 +1038,10 @@ const Screens = {
             this.renderAchievementsScreen();
         } else if (screenId === "screen-character") {
             updateChildPhotoPreview();
+        } else if (screenId === "screen-certificate") {
+            renderCertificateScreen();
+        } else if (screenId === "screen-settings") {
+            this.renderSettingsScreen();
         }
     },
 
@@ -1082,6 +1125,13 @@ const Screens = {
         }
 
         requestAnimationFrame(() => this.drawMapPath());
+    },
+
+    renderSettingsScreen() {
+        const certificateGroup = document.getElementById("settings-certificate-group");
+        if (certificateGroup) {
+            certificateGroup.hidden = !State.data.completedAll;
+        }
     },
 
     renderAchievementsScreen() {
@@ -2511,7 +2561,6 @@ class ArenaController {
         AudioPlayer.playVictoryMelody();
         
         // Direct to final certificate screen
-        document.getElementById("cert-display-name").innerText = State.data.playerName.toUpperCase();
         Screens.show("screen-certificate");
     }
 
@@ -2722,6 +2771,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    document.getElementById("btn-settings-certificate").addEventListener("click", () => {
+        if (!requestCertificateAccess("abrir o certificado")) return;
+        Screens.show("screen-certificate");
+    });
+
     document.getElementById("btn-settings-close").addEventListener("click", () => {
         Screens.show(State.data.characterSelected ? "screen-map" : "screen-start");
     });
@@ -2771,6 +2825,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Certificate screen actions
     document.getElementById("btn-cert-print").addEventListener("click", () => {
         AudioPlayer.playClick();
+        if (!requestCertificateAccess("salvar ou imprimir o certificado")) return;
         window.print();
     });
 
